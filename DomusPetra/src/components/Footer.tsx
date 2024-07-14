@@ -11,9 +11,10 @@ const Footer: React.FC = () => {
               Domus Petra
             </Typography>
             <Typography variant="body2">
-              Rua Exemplo, 123<br />
-              Bairro, Cidade, Estado<br />
-              CEP 12345-678
+              Rua Tangará, 470 - Bairro Iririú<br />
+              Joinville - SC<br />
+              CEP: 898227-100<br />
+              contato@domuspetra.com.br
             </Typography>
           </Grid>
           <Grid item xs={12} sm={4}>
