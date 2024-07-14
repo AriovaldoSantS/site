@@ -1,5 +1,7 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Box, Button, IconButton, Menu, MenuItem, Switch, Toolbar, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -10,6 +12,9 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ setDarkMode }) => {
   const [checked, setChecked] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleThemeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
@@ -27,13 +32,15 @@ const Navbar: React.FC<NavbarProps> = ({ setDarkMode }) => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-          <MenuIcon />
-        </IconButton>
+        {isMobile && (
+          <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+            <MenuIcon />
+          </IconButton>
+        )}
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Domus Petra
         </Typography>
-        <Box sx={{ display: 'flex', flexGrow: 1 }}>
+        <Box sx={{ display: isMobile ? 'none' : 'flex', flexGrow: 1 }}>
           <Button color="inherit" component={Link} to="/">Home</Button>
           <Button color="inherit" component={Link} to="/about">Sobre</Button>
           <Button color="inherit" component={Link} to="/services" onClick={handleMenuClick}>Serviços</Button>
