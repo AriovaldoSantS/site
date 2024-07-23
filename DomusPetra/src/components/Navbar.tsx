@@ -1,9 +1,9 @@
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Box, Button, IconButton, Menu, MenuItem, Switch, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, IconButton, Menu, MenuItem, Switch, Toolbar } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 interface NavbarProps {
   setDarkMode: (value: boolean) => void;
@@ -12,9 +12,9 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ setDarkMode }) => {
   const [checked, setChecked] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const location = useLocation();
 
   const handleThemeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
@@ -29,6 +29,9 @@ const Navbar: React.FC<NavbarProps> = ({ setDarkMode }) => {
     setAnchorEl(null);
   };
 
+  // Verificar se estamos na página do Blog
+  const isBlogPage = location.pathname === '/blog';
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -37,10 +40,8 @@ const Navbar: React.FC<NavbarProps> = ({ setDarkMode }) => {
             <MenuIcon />
           </IconButton>
         )}
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Domus Petra
-        </Typography>
-        <Box sx={{ display: isMobile ? 'none' : 'flex', flexGrow: 1 }}>
+       <image></image>
+        <Box sx={{ display: isMobile ? 'none' : 'flex', flexGrow: 1, alignItems: 'center' }}>
           <Button color="inherit" component={Link} to="/">Home</Button>
           <Button color="inherit" component={Link} to="/about">Sobre</Button>
           <Button color="inherit" component={Link} to="/services" onClick={handleMenuClick}>Serviços</Button>
@@ -57,7 +58,8 @@ const Navbar: React.FC<NavbarProps> = ({ setDarkMode }) => {
           <Button color="inherit" component={Link} to="/contact">Contato</Button>
         </Box>
         <Switch checked={checked} onChange={handleThemeChange} />
-        <Button color="inherit" component={Link} to="/login">Login</Button>
+        {/* Botão de Login visível apenas no Blog */}
+        {isBlogPage && <Button color="inherit" component={Link} to="/login">Login</Button>}
       </Toolbar>
     </AppBar>
   );
