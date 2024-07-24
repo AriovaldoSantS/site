@@ -1,4 +1,4 @@
-import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import 'slick-carousel/slick/slick-theme.css';
@@ -11,15 +11,14 @@ import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Services from './pages/Services';
 
+// Importar os temas
+import { darkTheme, lightTheme } from './components/theme';
 
 const App: React.FC = () => {
   const [darkMode, setDarkMode] = React.useState(false);
 
-  const theme = createTheme({
-    palette: {
-      mode: darkMode ? 'dark' : 'light',
-    },
-  });
+  // Selecionar o tema com base no estado do darkMode
+  const theme = darkMode ? darkTheme : lightTheme;
 
   return (
     <ThemeProvider theme={theme}>

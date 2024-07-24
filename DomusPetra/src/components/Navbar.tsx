@@ -1,9 +1,11 @@
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Box, Button, IconButton, Menu, MenuItem, Switch, Toolbar } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { AppBar, Box, Button, IconButton, Menu, MenuItem, Switch, Toolbar, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+
+// Importar as logos
+import logoLight from '../assets/Ativo 1.png'; // Logo para o modo claro
+import logoDark from '../assets/Ativo 2.png'; // Logo para o modo escuro
 
 interface NavbarProps {
   setDarkMode: (value: boolean) => void;
@@ -32,15 +34,22 @@ const Navbar: React.FC<NavbarProps> = ({ setDarkMode }) => {
   // Verificar se estamos na página do Blog
   const isBlogPage = location.pathname === '/blog';
 
+  // Escolher a logo com base no modo do tema
+  const logo = theme.palette.mode === 'light' ? logoLight : logoDark;
+
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ 
+      backgroundColor: theme.palette.mode === 'light' ? '#f5f5f5' : '#121212', 
+      color: theme.palette.text.primary 
+    }}>
       <Toolbar>
         {isMobile && (
           <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             <MenuIcon />
           </IconButton>
         )}
-       <image></image>
+        {/* Adicionar a logo */}
+        <img src={logo} alt="DomusPetra Logo" style={{ height: '40px', marginRight: '16px' }} />
         <Box sx={{ display: isMobile ? 'none' : 'flex', flexGrow: 1, alignItems: 'center' }}>
           <Button color="inherit" component={Link} to="/">Home</Button>
           <Button color="inherit" component={Link} to="/about">Sobre</Button>
