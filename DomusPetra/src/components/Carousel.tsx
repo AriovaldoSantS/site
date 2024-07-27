@@ -21,12 +21,14 @@ const Carousel: React.FC = () => {
       description: 'Descrição da última postagem.',
       imageUrl: '/path/to/latest-post.jpg',
       link: '/latest-post',
+     
     },
     // ... outros itens
   ];
 
   return (
-    <Box sx={{ padding: 4, backgroundColor: '#f5f5f5' }}>
+    <Box sx={{ padding: 4, backgroundColor: '#f5f5f5' }}  >
+      
       <Slider {...settings}>
         {items.map((item, index) => (
           <Card key={index} sx={{ maxWidth: 345, margin: 'auto' }}>

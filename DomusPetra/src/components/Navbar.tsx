@@ -39,7 +39,7 @@ const Navbar: React.FC<NavbarProps> = ({ setDarkMode }) => {
 
   return (
     <AppBar position="static" sx={{ 
-      backgroundColor: theme.palette.mode === 'light' ? '#f5f5f5' : '#121212', 
+      backgroundColor: theme.palette.mode === 'light' ? '#cdcbcb' : '#121212', 
       color: theme.palette.text.primary 
     }}>
       <Toolbar>
