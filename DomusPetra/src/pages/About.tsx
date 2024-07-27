@@ -1,8 +1,15 @@
+import AboutSection from '../components/AboutSection';
 
 function About() {
+  
   return (
-    <div>About</div>
+    <div>
+      <AboutSection/>
+      
+    </div>
   )
 }
 
 export default About
+
+

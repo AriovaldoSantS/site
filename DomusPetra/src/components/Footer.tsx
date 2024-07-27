@@ -3,7 +3,7 @@ import React from 'react';
 
 const Footer: React.FC = () => {
   return (
-    <Box sx={{ bgcolor: 'primary.main', color: 'white', py: 6 }}>
+    <Box sx={{ bgcolor: 'primary.main', color: 'white', py: 6, background:"black"}} >
       <Container maxWidth="lg">
         <Grid container spacing={4}>
           <Grid item xs={12} sm={4}>
