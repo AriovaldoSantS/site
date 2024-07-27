@@ -1,23 +1,10 @@
-import { Box, Grid, Typography, TextField, Button } from '@mui/material';
+import { Box, Button, Grid, TextField, Typography } from '@mui/material';
 import React from 'react';
-import fundo_sobre from "../assets/img/contatos/pagina-contato.jpg";
 
 const AboutSection: React.FC = () => {
   return (
     <Box sx={{ padding: 0, textAlign: 'center', width: '100vw', height: '85vh', overflow: 'hidden' }} style={{ color: "black" }}>
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          backgroundImage: `url(${fundo_sobre})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          zIndex: -1,
-        }}
-      />
+      
       <Box
         sx={{
           position: 'relative',
