@@ -1,26 +1,7 @@
 import { Box, Button, Container, Grid, Paper, TextField, Typography } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import React, { useState } from 'react';
 
-// Estilização do formulário
-const useStyles = makeStyles({
-  paper: {
-    padding: 20,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  form: {
-    width: '100%',
-    marginTop: 16,
-  },
-  submit: {
-    margin: '24px 0px 16px',
-  },
-});
-
 const Contact: React.FC = () => {
-  const classes = useStyles();
   const [formValues, setFormValues] = useState({
     name: '',
     email: '',
@@ -46,7 +27,14 @@ const Contact: React.FC = () => {
 
   return (
     <Container component="main" maxWidth="md">
-      <Paper className={classes.paper}>
+      <Paper
+        sx={{
+          padding: 3,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
         <Typography component="h1" variant="h5">
           Entre em Contato
         </Typography>
@@ -55,7 +43,7 @@ const Contact: React.FC = () => {
             Obrigado pelo contato! Responderemos em breve.
           </Typography>
         ) : (
-          <form className={classes.form} noValidate onSubmit={handleSubmit}>
+          <form noValidate onSubmit={handleSubmit} style={{ width: '100%', marginTop: 16 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -99,7 +87,7 @@ const Contact: React.FC = () => {
               fullWidth
               variant="contained"
               color="primary"
-              className={classes.submit}
+              sx={{ mt: 3, mb: 2 }}
             >
               Enviar
             </Button>

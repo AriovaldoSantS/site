@@ -1,6 +1,6 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Box, Button, IconButton, Menu, MenuItem, Switch, Toolbar, useMediaQuery, useTheme } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 // Importar as logos
@@ -12,9 +12,8 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ setDarkMode }) => {
-  const [checked, setChecked] = useState(false);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<null | HTMLElement>(null);
+  const [checked, setChecked] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const location = useLocation();
@@ -32,47 +31,11 @@ const Navbar: React.FC<NavbarProps> = ({ setDarkMode }) => {
     setAnchorEl(null);
   };
 
-  const handleMobileMenuClick = (event: React.MouseEvent<HTMLElement>) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
   // Verificar se estamos na página do Blog
   const isBlogPage = location.pathname === '/blog';
 
   // Escolher a logo com base no modo do tema
   const logo = theme.palette.mode === 'light' ? logoLight : logoDark;
-
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={Boolean(mobileMoreAnchorEl)}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem component={Link} to="/services/consultoria" onClick={handleMobileMenuClose}>Consultoria</MenuItem>
-      <MenuItem component={Link} to="/services/treinamentos" onClick={handleMobileMenuClose}>Treinamentos</MenuItem>
-      <MenuItem component={Link} to="/services/palestras" onClick={handleMobileMenuClose}>Palestras</MenuItem>
-      <MenuItem component={Link} to="/">Home</MenuItem>
-      <MenuItem component={Link} to="/about">Sobre</MenuItem>
-      <MenuItem component={Link} to="/blog">Blog</MenuItem>
-      <MenuItem component={Link} to="/contact">Contato</MenuItem>
-      {isBlogPage && <MenuItem component={Link} to="/login">Login</MenuItem>}
-    </Menu>
-  );
 
   return (
     <AppBar position="static" sx={{ 
@@ -81,18 +44,16 @@ const Navbar: React.FC<NavbarProps> = ({ setDarkMode }) => {
     }}>
       <Toolbar>
         {isMobile && (
-          <>
-            <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleMobileMenuClick} sx={{ mr: 2 }}>
-              <MenuIcon />
-            </IconButton>
-            {renderMobileMenu}
-          </>
+          <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }} onClick={handleMenuClick}>
+            <MenuIcon />
+          </IconButton>
         )}
+        {/* Adicionar a logo */}
         <img src={logo} alt="DomusPetra Logo" style={{ height: '40px', marginRight: '16px' }} />
         <Box sx={{ display: isMobile ? 'none' : 'flex', flexGrow: 1, alignItems: 'center' }}>
           <Button color="inherit" component={Link} to="/">Home</Button>
           <Button color="inherit" component={Link} to="/about">Sobre</Button>
-          <Button color="inherit" onClick={handleMenuClick}>Serviços</Button>
+          <Button color="inherit" component={Link} to="/services" onClick={handleMenuClick}>Serviços</Button>
           <Menu
             anchorEl={anchorEl}
             open={Boolean(anchorEl)}
@@ -106,6 +67,7 @@ const Navbar: React.FC<NavbarProps> = ({ setDarkMode }) => {
           <Button color="inherit" component={Link} to="/contact">Contato</Button>
         </Box>
         <Switch checked={checked} onChange={handleThemeChange} />
+        {/* Botão de Login visível apenas no Blog */}
         {isBlogPage && <Button color="inherit" component={Link} to="/login">Login</Button>}
       </Toolbar>
     </AppBar>
