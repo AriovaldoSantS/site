@@ -1,7 +1,7 @@
-
+import ContatoSection from '../components/ContatoSection';
 function Contact() {
   return (
-    <div>Contact</div>
+    <div><ContatoSection/></div>
   )
 }
 

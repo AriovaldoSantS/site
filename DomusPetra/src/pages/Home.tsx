@@ -1,5 +1,5 @@
 import React from 'react';
-import AboutSection from '../components/AboutSection';
+import AboutSection from '../components/ContatoSection';
 import CallToAction from '../components/CallToAction';
 import Carousel from '../components/Carousel';
 import CoachHighlight from '../components/CoachHighlight';
