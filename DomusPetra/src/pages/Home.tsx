@@ -15,7 +15,7 @@ const Home: React.FC = () => {
         title="João Silva"
         quote="Transforme sua vida com um coaching especializado."
       />
-      <AboutSection />
+     
       <ServicesHighlight />
       <Testimonials />
       <CallToAction />
