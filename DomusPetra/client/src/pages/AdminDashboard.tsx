@@ -1,14 +1,22 @@
-import { Button, Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
+import { Alert, Button, Container, Paper, Snackbar, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
+interface Palestra {
+  id: number;
+  title: string;
+  text: string;
+  image: string;
+}
+
 const AdminDashboard: React.FC = () => {
-  const [palestras, setPalestras] = useState<any[]>([]);
+  const [palestras, setPalestras] = useState<Palestra[]>([]);
   const [editMode, setEditMode] = useState<boolean>(false);
-  const [currentPalestra, setCurrentPalestra] = useState<any | null>(null);
+  const [currentPalestra, setCurrentPalestra] = useState<Palestra | null>(null);
   const [title, setTitle] = useState<string>('');
   const [text, setText] = useState<string>('');
   const [image, setImage] = useState<string>('');
+  const [notification, setNotification] = useState<{ open: boolean, message: string, severity: 'success' | 'error' }>({ open: false, message: '', severity: 'success' });
 
   useEffect(() => {
     fetchPalestras();
@@ -19,34 +27,32 @@ const AdminDashboard: React.FC = () => {
       const response = await axios.get('/api/palestra');
       setPalestras(response.data);
     } catch (error) {
-      console.error('Error fetching palestras:', error);
+      showNotification('Error fetching palestras:', 'error');
     }
   };
 
   const handleAddOrUpdatePalestra = async () => {
     if (!title || !text || !image) {
-      alert('Todos os campos são obrigatórios.');
+      showNotification('Todos os campos são obrigatórios.', 'error');
       return;
     }
 
     try {
       if (editMode && currentPalestra) {
         await axios.put(`/api/palestra/${currentPalestra.id}`, { title, text, image });
+        showNotification('Palestra atualizada com sucesso!', 'success');
       } else {
         await axios.post('/api/palestra', { title, text, image });
+        showNotification('Palestra adicionada com sucesso!', 'success');
       }
-      setTitle('');
-      setText('');
-      setImage('');
-      setEditMode(false);
-      setCurrentPalestra(null);
+      resetForm();
       fetchPalestras();
     } catch (error) {
-      console.error('Error adding or updating palestra:', error);
+      showNotification('Error adding or updating palestra:', 'error');
     }
   };
 
-  const handleEdit = (palestra: any) => {
+  const handleEdit = (palestra: Palestra) => {
     setEditMode(true);
     setCurrentPalestra(palestra);
     setTitle(palestra.title);
@@ -57,10 +63,27 @@ const AdminDashboard: React.FC = () => {
   const handleDelete = async (id: number) => {
     try {
       await axios.delete(`/api/palestra/${id}`);
+      showNotification('Palestra excluída com sucesso!', 'success');
       fetchPalestras();
     } catch (error) {
-      console.error('Error deleting palestra:', error);
+      showNotification('Error deleting palestra:', 'error');
     }
+  };
+
+  const showNotification = (message: string, severity: 'success' | 'error') => {
+    setNotification({ open: true, message, severity });
+  };
+
+  const resetForm = () => {
+    setTitle('');
+    setText('');
+    setImage('');
+    setEditMode(false);
+    setCurrentPalestra(null);
+  };
+
+  const handleCloseSnackbar = () => {
+    setNotification({ ...notification, open: false });
   };
 
   return (
@@ -98,6 +121,7 @@ const AdminDashboard: React.FC = () => {
         variant="contained"
         color="primary"
         onClick={handleAddOrUpdatePalestra}
+        style={{ marginTop: 20 }}
       >
         {editMode ? 'Atualizar Palestra' : 'Adicionar Palestra'}
       </Button>
@@ -142,6 +166,16 @@ const AdminDashboard: React.FC = () => {
           </TableBody>
         </Table>
       </TableContainer>
+
+      <Snackbar
+        open={notification.open}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert onClose={handleCloseSnackbar} severity={notification.severity}>
+          {notification.message}
+        </Alert>
+      </Snackbar>
     </Container>
   );
 };

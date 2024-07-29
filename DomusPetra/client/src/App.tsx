@@ -7,7 +7,6 @@ import About from './pages/About';
 import AddBlog from './pages/AddBlog';
 import AddConsulting from './pages/AddConsulting';
 import AddPalestra from './pages/AddPalestra';
-
 import AddTraining from './pages/AddTraining';
 import Admin from './pages/Admin';
 import AdminDashboard from './pages/AdminDashboard';
@@ -43,10 +42,9 @@ const App: React.FC = () => {
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/add-palestra" element={<AddPalestra />} />
-         
           <Route path="/add-consulting" element={<AddConsulting />} />
           <Route path="/add-blog" element={<AddBlog />} />
-          <Route path="/add-training" element={<AddTraining />} /> {/* Adicionar rota para treinamento */}
+          <Route path="/add-training" element={<AddTraining />} />
         </Routes>
         <Footer />
       </Router>

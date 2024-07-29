@@ -1,5 +1,6 @@
 // src/pages/Palestras.tsx
 import { Card, CardContent, CardMedia, Container, Grid, Typography } from '@mui/material';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 interface Palestra {
@@ -11,11 +12,26 @@ interface Palestra {
 
 const Palestras: React.FC = () => {
   const [palestras, setPalestras] = useState<Palestra[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const storedPalestras = JSON.parse(localStorage.getItem('palestras') || '[]');
-    setPalestras(storedPalestras);
+    const fetchPalestras = async () => {
+      try {
+        const response = await axios.get('/api/palestras');
+        setPalestras(response.data);
+      } catch (error) {
+        setError('Erro ao carregar palestras.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPalestras();
   }, []);
+
+  if (loading) return <Typography variant="h6" align="center">Carregando...</Typography>;
+  if (error) return <Typography variant="h6" color="error" align="center">{error}</Typography>;
 
   return (
     <Container>
@@ -31,6 +47,7 @@ const Palestras: React.FC = () => {
                 height="140"
                 image={palestra.image}
                 alt={palestra.title}
+                loading="lazy"
               />
               <CardContent>
                 <Typography variant="h5">{palestra.title}</Typography>
