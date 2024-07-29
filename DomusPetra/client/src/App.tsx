@@ -8,7 +8,7 @@ import AddBlog from './pages/AddBlog';
 import AddConsulting from './pages/AddConsulting';
 import AddPalestra from './pages/AddPalestra';
 
-import AddTraining from './pages/AddTraining'; // Importar página de adicionar treinamento
+import AddTraining from './pages/AddTraining';
 import Admin from './pages/Admin';
 import AdminDashboard from './pages/AdminDashboard';
 import Blog from './pages/Blog';
