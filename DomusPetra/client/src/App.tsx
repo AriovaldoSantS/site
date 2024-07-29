@@ -1,12 +1,13 @@
+// src/App.tsx
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
+import PalestraManager from './components/PalestraManager';
 import About from './pages/About';
 import AddBlog from './pages/AddBlog';
 import AddConsulting from './pages/AddConsulting';
-import AddPalestra from './pages/AddPalestra';
 import AddTraining from './pages/AddTraining';
 import Admin from './pages/Admin';
 import AdminDashboard from './pages/AdminDashboard';
@@ -34,16 +35,16 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/consulting" element={<Consulting />} />
           <Route path="/palestras" element={<Palestras />} />
+          <Route path="/consulting" element={<Consulting />} />
           <Route path="/training" element={<Training />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
-          <Route path="/add-palestra" element={<AddPalestra />} />
-          <Route path="/add-consulting" element={<AddConsulting />} />
+          <Route path="/palestra-manager" element={<PalestraManager />} />
           <Route path="/add-blog" element={<AddBlog />} />
+          <Route path="/add-consulting" element={<AddConsulting />} />
           <Route path="/add-training" element={<AddTraining />} />
         </Routes>
         <Footer />

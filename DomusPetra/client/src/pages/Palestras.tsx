@@ -1,4 +1,5 @@
 // src/pages/Palestras.tsx
+
 import { Card, CardContent, CardMedia, Container, Grid, Typography } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -9,6 +10,8 @@ interface Palestra {
   text: string;
   image: string;
 }
+
+const [palestras, setPalestras] = useState<Palestra[]>([]);
 
 const Palestras: React.FC = () => {
   const [palestras, setPalestras] = useState<Palestra[]>([]);
