@@ -1,13 +1,12 @@
-// src/components/Navbar.tsx
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'; // Ícone para área administrativa
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Box, Button, IconButton, Toolbar, useMediaQuery, useTheme } from '@mui/material';
+import { AppBar, Box, Button, IconButton, Menu, MenuItem, Toolbar, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 // Importar as logos
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'; // Icone administrativo
 import logoLight from '../assets/Ativo 1.png'; // Logo para o modo claro
 import logoDark from '../assets/Ativo 2.png'; // Logo para o modo escuro
 
@@ -29,11 +28,15 @@ const Navbar: React.FC<NavbarProps> = ({ setDarkMode }) => {
     setAnchorEl(null);
   };
 
-  // Escolher a logo com base no modo do tema
-  const logo = theme.palette.mode === 'light' ? logoLight : logoDark;
+  const handleDarkModeToggle = () => {
+    setDarkMode((prevMode) => !prevMode); // Alternar entre modos claro e escuro
+  };
 
   // Verificar se estamos na página do Blog
   const isBlogPage = location.pathname === '/blog';
+
+  // Escolher a logo com base no modo do tema
+  const logo = theme.palette.mode === 'light' ? logoLight : logoDark;
 
   return (
     <AppBar position="static" sx={{ 
@@ -47,10 +50,8 @@ const Navbar: React.FC<NavbarProps> = ({ setDarkMode }) => {
           </IconButton>
         )}
         {/* Adicionar a logo */}
-        <Link to="/">
-          <img src={logo} alt="DomusPetra Logo" style={{ height: '40px', marginRight: '16px' }} />
-        </Link>
-        <Box sx={{ display: isMobile ? 'none' : 'flex', flexGrow: 1, alignItems: 'center', justifyContent: 'flex-end' }}>
+        <img src={logo} alt="DomusPetra Logo" style={{ height: '40px', marginRight: '16px' }} />
+        <Box sx={{ display: isMobile ? 'none' : 'flex', flexGrow: 1, alignItems: 'center' }}>
           <Button color="inherit" component={Link} to="/">Home</Button>
           <Button color="inherit" component={Link} to="/about">Sobre</Button>
           <Button color="inherit" component={Link} to="/consulting">Consultoria</Button>
@@ -59,20 +60,37 @@ const Navbar: React.FC<NavbarProps> = ({ setDarkMode }) => {
           <Button color="inherit" component={Link} to="/blog">Blog</Button>
           <Button color="inherit" component={Link} to="/contact">Contato</Button>
         </Box>
-        {isBlogPage && (
+        <Box sx={{ display: isMobile ? 'flex' : 'none' }}>
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleMenuClose}
+          >
+            <MenuItem component={Link} to="/" onClick={handleMenuClose}>Home</MenuItem>
+            <MenuItem component={Link} to="/about" onClick={handleMenuClose}>Sobre</MenuItem>
+            <MenuItem component={Link} to="/consulting" onClick={handleMenuClose}>Consultoria</MenuItem>
+            <MenuItem component={Link} to="/palestras" onClick={handleMenuClose}>Palestras</MenuItem>
+            <MenuItem component={Link} to="/training" onClick={handleMenuClose}>Treinamento</MenuItem>
+            <MenuItem component={Link} to="/blog" onClick={handleMenuClose}>Blog</MenuItem>
+            <MenuItem component={Link} to="/contact" onClick={handleMenuClose}>Contato</MenuItem>
+          </Menu>
+        </Box>
+        {/* Adicionar botão de alternância de tema */}
+        <IconButton color="inherit" onClick={handleDarkModeToggle} sx={{ ml: 2 }}>
+          {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+        </IconButton>
+        {/* Botão de administração */}
+        {location.pathname !== '/admin' && (
           <IconButton
-            edge="end"
             color="inherit"
-            aria-label="admin-login"
             component={Link}
             to="/admin"
+            sx={{ ml: 2, display: { xs: 'none', md: 'flex' } }}
+            title="Área Administrativa"
           >
             <AdminPanelSettingsIcon />
           </IconButton>
         )}
-        <IconButton sx={{ ml: 1 }} onClick={() => setDarkMode(!theme.palette.mode === 'dark')} color="inherit">
-          {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-        </IconButton>
       </Toolbar>
     </AppBar>
   );

@@ -1,13 +1,14 @@
-// src/App.tsx
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import 'slick-carousel/slick/slick-theme.css';
-import 'slick-carousel/slick/slick.css';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import About from './pages/About';
-import AddPalestra from './pages/AddPalestra'; // Importar a nova página
+import AddBlog from './pages/AddBlog';
+import AddConsulting from './pages/AddConsulting';
+import AddPalestra from './pages/AddPalestra';
+
+import AddTraining from './pages/AddTraining'; // Importar página de adicionar treinamento
 import Admin from './pages/Admin';
 import AdminDashboard from './pages/AdminDashboard';
 import Blog from './pages/Blog';
@@ -41,7 +42,11 @@ const App: React.FC = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
-          <Route path="/add-palestra" element={<AddPalestra />} /> {/* Adicionar rota */}
+          <Route path="/add-palestra" element={<AddPalestra />} />
+         
+          <Route path="/add-consulting" element={<AddConsulting />} />
+          <Route path="/add-blog" element={<AddBlog />} />
+          <Route path="/add-training" element={<AddTraining />} /> {/* Adicionar rota para treinamento */}
         </Routes>
         <Footer />
       </Router>
