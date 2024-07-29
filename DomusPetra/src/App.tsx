@@ -7,11 +7,15 @@ import 'slick-carousel/slick/slick.css';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import About from './pages/About';
-import AddPalestra from './pages/AddPalestra'; // Importar o novo componente
+import AddPalestra from './pages/AddPalestra'; // Importar a nova página
+import Admin from './pages/Admin';
+import AdminDashboard from './pages/AdminDashboard';
 import Blog from './pages/Blog';
+import Consulting from './pages/Consulting';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
-import Services from './pages/Services';
+import Palestras from './pages/Palestras';
+import Training from './pages/Training';
 
 const App: React.FC = () => {
   const [darkMode, setDarkMode] = React.useState(false);
@@ -30,10 +34,14 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
+          <Route path="/consulting" element={<Consulting />} />
+          <Route path="/palestras" element={<Palestras />} />
+          <Route path="/training" element={<Training />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/add-palestra" element={<AddPalestra />} /> {/* Nova rota */}
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/add-palestra" element={<AddPalestra />} /> {/* Adicionar rota */}
         </Routes>
         <Footer />
       </Router>

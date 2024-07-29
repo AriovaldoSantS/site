@@ -1,51 +1,96 @@
 // src/pages/AddPalestra.tsx
-import { Button, Container, TextField, Typography } from '@mui/material';
-import axios from 'axios';
+import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
+
+interface Palestra {
+  id: number;
+  title: string;
+  text: string;
+  image: string;
+}
 
 const AddPalestra: React.FC = () => {
   const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [error, setError] = useState<string | null>(null);
+  const [text, setText] = useState('');
+  const [image, setImage] = useState<string | ArrayBuffer | null>(null);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    try {
-      const newPalestra = { title, description };
-      await axios.post('http://localhost:3001/api/palestras', newPalestra);
-      setTitle('');
-      setDescription('');
-      setError(null);
-      // Adicione uma notificação ou redirecionamento, se desejar
-    } catch (error) {
-      setError('Erro ao adicionar a palestra.');
-      console.error('Erro ao adicionar a palestra:', error);
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImage(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
+  };
+
+  const handleSubmit = () => {
+    if (!title || !text || !image) {
+      alert('Todos os campos são obrigatórios.');
+      return;
+    }
+
+    const newPalestra: Palestra = {
+      id: Date.now(),
+      title,
+      text,
+      image: image.toString(),
+    };
+
+    const existingPalestras = JSON.parse(localStorage.getItem('palestras') || '[]');
+    localStorage.setItem('palestras', JSON.stringify([...existingPalestras, newPalestra]));
+
+    alert('Palestra adicionada com sucesso!');
+    setTitle('');
+    setText('');
+    setImage(null);
   };
 
   return (
     <Container>
-      <Typography variant="h4" gutterBottom>Adicionar Palestra</Typography>
-      <form onSubmit={handleSubmit}>
+      <Box display="flex" flexDirection="column" alignItems="center" mt={4}>
+        <Typography variant="h4" gutterBottom>
+          Adicionar Palestra
+        </Typography>
         <TextField
           label="Título"
-          fullWidth
+          variant="outlined"
           margin="normal"
+          fullWidth
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
         <TextField
-          label="Descrição"
-          fullWidth
+          label="Texto"
+          variant="outlined"
           margin="normal"
+          fullWidth
           multiline
           rows={4}
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={text}
+          onChange={(e) => setText(e.target.value)}
         />
-        {error && <Typography color="error">{error}</Typography>}
-        <Button type="submit" variant="contained" color="primary">Adicionar</Button>
-      </form>
+        <Button
+          variant="contained"
+          component="label"
+          sx={{ mt: 2, mb: 2 }}
+        >
+          Upload Imagem
+          <input
+            type="file"
+            hidden
+            onChange={handleImageChange}
+          />
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleSubmit}
+        >
+          Adicionar Palestra
+        </Button>
+      </Box>
     </Container>
   );
 };

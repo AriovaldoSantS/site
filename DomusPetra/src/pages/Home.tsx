@@ -1,8 +1,8 @@
 import React from 'react';
+import AboutSection from '../components/AboutSection';
 import CallToAction from '../components/CallToAction';
 import Carousel from '../components/Carousel';
 import CoachHighlight from '../components/CoachHighlight';
-import AboutSection from '../components/ContatoSection';
 import ServicesHighlight from '../components/ServicesHighlight';
 import Testimonials from '../components/Testimonials';
 
