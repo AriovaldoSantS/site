@@ -1,0 +1,60 @@
+*logo
+#Título
+<h1>Gestão Consciente do Tempo</h1>
+
+#Texto do Título
+<p> O Tempo é um dos recursos mais preciosos e escassos. A gestão consciente do tempo possibilita enormes ganhos na qualidade de vida, na eficiência da rotina do dia-a-dia, e consequentemente na melhora dos resultados de qualquer atividade.</p>
+
+
+
+#01 texto
+
+<p> Conscientizar e capacitar os participantes na gestão adequada do recurso Tempo, é o objetivo dessa paletra. A escassez do recurso Tempo, requer uma gestão consciente para desenvolver a eficiência na rotina do dia-a-dia e melhoras nos resultados. Nessa palestra são apresentadas metodologias, ferramentas e aplicativos que proporcionam uma melhor gestão do tempo.</p>
+
+<h3>Alguns dos temas abordados:</h3>
+
+<li>- Gestão Consciente do Tempo</p>
+
+<li>- Conceito de Eficiência na gestão do tempo
+
+<li>- Planejamento e Priorização
+
+<li>- Matrizes de Decisão
+
+<li>- Reuniões eficientes com ênfase na gestão do tempo
+
+<li>- Aplicativos e softwares para aumento da eficiência
+
+<li>- Relação entre mídias sociais e meios de comunicação com a gestão eficiente do tempo
+
+
+
+<p>Para consulta de palestra in company ou reservas para os próximos eventos, entre em contato pelo telefone (47) 997071177 ou pelo email contato@domuspetra.com.br</p>
+
+
+
+
+
+#Formulario
+
+Fale conosco
+Solicite um Orçamento ou mais Informações
+
+Seu nome
+Seu email
+Seu telefone 
+
+obs. adicionar mais dados
+
+
+
+
+
+
+
+
+
+
+
+
+

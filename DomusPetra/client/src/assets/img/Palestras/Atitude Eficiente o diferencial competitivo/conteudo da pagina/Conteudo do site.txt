@@ -1,0 +1,32 @@
+*logo
+*Imagem de fundo da lampada
+
+#Titulo da pagina
+<h1> Atitude Eficiente: o verdadeiro diferencial competitivo!</h1>
+
+
+<P> A palestra Atitude Eficiente promove uma profunda reflexão quanto a importância do comportamento do indivíduo nos resultados.</p>
+
+*slide das imagens carrosel
+
+#textos
+
+<p> Eficiência, resumidamente, é a capacidade de se alcançar o objetivo com o menor dispêndio de recursos. Essa deve ser, portanto, a palavra de ordem para quem precisa obter melhores resultados, crescer, inovar e ter sucesso. Embora seja um termo comum para processos produtivos, o conceito de eficiência permeia todos os aspectos da vida, desde o âmbito pessoal até o nível da competitividade global entre os países.</p>
+
+<p>A palestra Atitude Eficiente traz à tona a relevante influência do comportamento do indivíduo no resultado de qualquer atividade. E leva o participante à uma verdadeira reflexão dos pontos individuais de melhoria frente a iminente necessidade de mudança de cultura, com foco em resultados.</p>
+
+<p>Essa palestra é dinâmica, cativante e apresenta de forma agradável um rico conteúdo totalmente capaz de mobilizar sua equipe.</p>
+
+<p>Para consulta de palestra in company ou reservas para os próximos eventos, entre em contato pelo telefone (47) 997071177 ou pelo email contato@domuspetra.com.br</p>
+
+#Formulario
+
+Fale conosco
+Solicite um Orçamento ou mais Informações
+
+Seu nome
+Seu email
+Seu telefone 
+
+obs. adicionar mais dados
+

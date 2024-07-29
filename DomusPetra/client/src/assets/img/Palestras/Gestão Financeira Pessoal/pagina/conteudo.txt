@@ -1,0 +1,36 @@
+*logo
+
+#Título
+<h1>Gestão Financeira Pessoal </h1>
+
+#Texto do Título
+<p>Palestra que apresenta o impacto da saúde financeira no equilíbrio da vida e na felicidade, e os caminhos para garantir o sucesso nesse aspecto da vida. </p>
+
+
+
+#01 texto
+<h3>Gestão Financeira Pessoal</h3>
+<p>Apresenta o impacto da saúde financeira no equilíbrio da vida e na felicidade. A palestra desmistifica crenças, tabus e paradigmas em relação ao dinheiro e a riqueza, e apresenta caminhos práticos para sair do tradicional ciclo vicioso e construir um ciclo virtuoso. </p>
+
+<h3>Temas abordados: </h3>
+<li> - Mentalidade e atitude - a força dos hábitos e o impacto das mudanças na saúde financeira;
+<li> - Desmistificando Ativos e Passivos e o tradicional ciclo financeiro familiar;
+<li> - Inteligência Financeira - regras, ferramentas, conceitos e estratégias dirigidos à independência Financeira;
+<li> - Como começar: sugestões e possíveis caminhos para o estabelecimento da Saúde Financeira no curto prazo, mediante o cenário macroeconômico atual.
+
+<p>Para consulta de palestra in company ou reservas para os próximos eventos, entre em contato pelo telefone (47) 997071177 ou pelo email contato@domuspetra.com.br</p>
+
+
+#Formulario
+
+Fale conosco
+Solicite um Orçamento ou mais Informações
+
+Seu nome
+Seu email
+Seu telefone 
+
+obs. adicionar mais dados
+
+
+
